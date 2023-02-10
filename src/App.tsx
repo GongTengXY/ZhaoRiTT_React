@@ -1,7 +1,15 @@
-import './App.css'
+import './App.scss'
+import Router from './routers'
+import { unstable_HistoryRouter as HistoryRouter } from 'react-router-dom'
 
 function App() {
-  return <div className="app">app</div>
+  return (
+    <div>
+      {/* <HistoryRouter history={history}>
+        <Router />
+      </HistoryRouter> */}
+    </div>
+  )
 }
 
 export default App

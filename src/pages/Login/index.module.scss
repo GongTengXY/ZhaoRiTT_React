@@ -1,0 +1,54 @@
+.root {
+  :global {
+    .login-form {
+      padding: 0 33px;
+
+      .title {
+        font-size: 26px;
+        margin: 54px 0 40px 10px;
+      }
+      .adm-form {
+        --border-top: none;
+        --border-bottom: none;
+      }
+      .adm-list-default {
+        border: none;
+      }
+      .adm-list-item {
+        margin-bottom: 5px;
+        padding: 0;
+        border: none;
+      }
+      .login-item {
+        // 注意：因为 1px 边框样式使用了绝对定位，所以，此处需要将设置为相对定位
+        position: relative;
+        border: none;
+      }
+      .adm-list-item-content {
+        position: relative;
+        border-bottom: none;
+        border-top: none;
+        margin-bottom: 12px;
+      }
+      // 验证码
+      .adm-input-wrapper {
+        --placeholder-color: #a5a6ab;
+      }
+      .code-extra {
+        color: var(--adm-color-primary);
+        font-size: 14px;
+      }
+      .adm-list-item-description {
+        position: absolute;
+      }
+
+      .login-submit {
+        height: 50px;
+        margin-top: 30px;
+        border: none;
+        font-size: 16px;
+        background: linear-gradient(315deg, #fe4f4f, #fc6627);
+      }
+    }
+  }
+}
