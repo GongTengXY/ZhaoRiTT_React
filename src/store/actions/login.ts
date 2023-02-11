@@ -51,7 +51,6 @@ export const getCode = (mobile: string) => {
 // 退出登录
 export const QuitToken = (): RootThunkAction => {
   return async (dispatch) => {
-    console.log(123)
     removeRefreshToken()
     await removeToken()
     dispatch(QuitUserToken())

@@ -1,0 +1,38 @@
+@import '@scss/hairline.scss';
+
+.root {
+  height: 100%;
+  :global {
+    .video-list {
+      padding: 44px 16px;
+    }
+    .video-item {
+      position: relative;
+      padding: 10px 0;
+      @include hairline(bottom, #f0f0f0);
+    }
+    .title {
+      line-height: 1.4;
+      font-size: 16px;
+      font-weight: normal;
+      padding-bottom: 5px;
+    }
+
+    video {
+      width: 100%;
+      border-radius: 4px;
+    }
+
+    span {
+      font-size: 12px;
+      color: #999;
+    }
+    .adm-nav-bar {
+      width: 100%;
+      position: fixed;
+      padding: 0;
+      z-index: 1;
+      background-color: #fff;
+    }
+  }
+}

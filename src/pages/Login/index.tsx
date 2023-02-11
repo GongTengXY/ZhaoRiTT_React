@@ -4,10 +4,11 @@ import { useEffect, useRef, useState } from 'react'
 import { LoginForm } from '@/types/data'
 import { useDispatch } from 'react-redux'
 import { getCode, userToken } from '@/store/actions/login'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import type { AxiosError } from 'axios'
 
 const Login = () => {
+  const location = useLocation()
   const timeRef = useRef(-1)
   const mobileRef = useRef<InputRef>(null)
   const [form] = Form.useForm()
@@ -22,6 +23,9 @@ const Login = () => {
         content: '登录成功',
         duration: 1000,
         afterClose: () => {
+          if (location.state?.from) {
+            return navigate(`${location.state.from}`)
+          }
           navigate('/home')
         },
       })
@@ -56,7 +60,7 @@ const Login = () => {
 
   return (
     <div className={styles.root}>
-      <NavBar></NavBar>
+      <NavBar onBack={() => navigate('/home')}></NavBar>
       <div className="login-form">
         <p className="title">短信登录</p>
         <Form

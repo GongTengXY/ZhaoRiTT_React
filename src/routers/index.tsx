@@ -6,6 +6,7 @@ import Question from '@/pages/Question'
 import Profile from '@/pages/Profile'
 import Video from '@/pages/Video'
 import ProfileEdit from '@/pages/Profile/Edit'
+import AuthRoute from '@/utils/AuthRoute'
 
 const router = createBrowserRouter([
   {
@@ -30,7 +31,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/home/question',
-        element: <Question />,
+        element: <AuthRoute component={<Question />} />,
       },
       {
         path: '/home/profile',

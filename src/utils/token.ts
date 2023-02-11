@@ -20,3 +20,6 @@ export const setRefreshToken = (token: Refresh_token) =>
 
 export const removeRefreshToken = () =>
   localStorage.removeItem(ZHAORITT_REFRESH_TOKEN)
+
+// 判断token是否存在
+export const isAuth = () => !!getToken()

@@ -22,6 +22,9 @@ export type OwnIResponse = ApiResponse<Own>
 // 上传头像的返回类型
 export type UserPhResponse = ApiResponse<{ photo: string }>
 
+// 更新token
+export type PutTokenResponse = ApiResponse<{ token: string }>
+
 // 用户信息响应类型
 export type User = {
   id: string
