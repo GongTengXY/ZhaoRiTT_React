@@ -1,0 +1,143 @@
+@import '@scss/hairline.scss';
+
+.root {
+  height: 100%;
+
+  :global {
+    .content {
+      position: relative;
+      z-index: 1;
+      height: 100vh;
+    }
+
+    .wrapper {
+      background-color: #f7f8fa;
+    }
+
+    .profile-list {
+      .am-list-item {
+        padding-left: 17px;
+      }
+
+      .am-list-line {
+        padding-right: 15px;
+      }
+
+      .am-list-body::before {
+        display: none;
+      }
+
+      .am-list-content {
+        font-size: 14px;
+        color: #3a3948;
+      }
+
+      .am-list-line::after {
+        background-color: #f0f0f0 !important;
+      }
+
+      .am-list-extra {
+        padding-right: 13px;
+        font-size: 14px;
+        color: #3a3948;
+        .intro {
+          color: #c8c9cc;
+
+          &.normal {
+            color: #3a3948;
+          }
+        }
+      }
+      .avatar-wrapper {
+        display: inline-block;
+        height: 22.5px;
+        width: 22.5px;
+        border-radius: 50%;
+        overflow: hidden;
+        vertical-align: middle;
+
+        img {
+          height: 22.5px;
+          width: 22.5px;
+          display: block;
+          object-fit: cover;
+        }
+      }
+
+      .am-list-arrow {
+        width: 8px;
+        height: 14px;
+      }
+
+      &:nth-child(2) {
+        margin-top: 12px;
+      }
+
+      .am-list-body::after {
+        display: none;
+      }
+    }
+
+    .drawer {
+      .am-drawer-sidebar {
+        width: 100%;
+        background-color: #fff;
+        overflow: auto;
+      }
+    }
+    .drawer-list {
+      .am-drawer-sidebar {
+        height: 174px;
+        border-radius: 12px 12px 0 0;
+      }
+    }
+
+    .logout {
+      position: absolute;
+      bottom: 60px;
+      width: 90%;
+      height: 44px;
+      left: 18px;
+      background-color: var(--adm-color-primary);
+
+      .btn {
+        width: 100%;
+        color: #fff;
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+// popup 不在当前组件结构中，因此，只能设置全局样式
+:global {
+  .am-picker-popup-body {
+    .am-picker-popup-header {
+      background-size: 0;
+      &::after {
+        display: none !important;
+      }
+    }
+  }
+  .adm-list-default {
+    border: none;
+  }
+  .am-picker-popup-header-left {
+    font-size: 14px;
+    color: #969799;
+  }
+  .am-picker-popup-header-right {
+    font-size: 14px;
+    color: #fc6627;
+  }
+  .adm-nav-bar-back-arrow {
+    font-size: 18px;
+  }
+  .adm-list-item-content-main {
+    font-size: 15px;
+    margin-left: 2px;
+  }
+  .adm-nav-bar-title {
+    font-size: 16px;
+  }
+}

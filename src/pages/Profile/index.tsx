@@ -1,24 +1,36 @@
-import { useDispatch } from 'react-redux'
-import { useEffect } from 'react'
-import { ThunkUserInfo } from '@/store/actions/user'
+import { ThunkUserInfo, UserInfo } from '@/store/actions/user'
 import Icon from '@/components/Icon'
 import { Link } from 'react-router-dom'
+import { User } from '@/types/data'
 import styles from './index.module.scss'
+import { useInitialState } from '@/utils/use-initial-state'
 
 const Profile = () => {
-  const dispatch = useDispatch()
-  useEffect(() => {
-    dispatch(ThunkUserInfo())
-  }, [dispatch])
+  // const dispatch = useDispatch()
+  // const { photo, name, art_count, fans_count, follow_count, like_count } =
+  //   useSelector((state: RootState) => state.user?.UserInfo)
+  // useEffect(() => {
+  //   if (store.getState().login.token) {
+  //     dispatch(ThunkUserInfo())
+  //   }
+  // }, [dispatch])
+  const { UserInfo } = useInitialState(ThunkUserInfo, 'user')
+  const { photo, name, art_count, fans_count, follow_count, like_count } =
+    UserInfo
   return (
     <div className={styles.root}>
       <div className="profile">
         {/* 顶部个人信息区域 */}
         <div className="user-info">
           <div className="avatar">
-            <img src={''} alt="" />
+            <img
+              src={`${
+                photo || 'http://toutiao.itheima.net/images/user_head.jpg'
+              }`}
+              alt=""
+            />
           </div>
-          <div className="user-name">{'xxxxxxxx'}</div>
+          <div className="user-name">{name || '快登录吧！'}</div>
           <Link to="/profile/edit">
             个人信息 <Icon type="iconbtn_right" />
           </Link>
@@ -33,19 +45,19 @@ const Profile = () => {
         {/* 统计信息区域 */}
         <div className="count-list">
           <div className="count-item">
-            <p>{0}</p>
+            <p>{art_count}</p>
             <p>动态</p>
           </div>
           <div className="count-item">
-            <p>{0}</p>
+            <p>{follow_count}</p>
             <p>关注</p>
           </div>
           <div className="count-item">
-            <p>{0}</p>
+            <p>{fans_count}</p>
             <p>粉丝</p>
           </div>
           <div className="count-item">
-            <p>{0}</p>
+            <p>{like_count}</p>
             <p>被赞</p>
           </div>
         </div>

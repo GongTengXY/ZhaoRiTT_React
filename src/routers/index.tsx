@@ -5,6 +5,7 @@ import Home from '@/pages/Home'
 import Question from '@/pages/Question'
 import Profile from '@/pages/Profile'
 import Video from '@/pages/Video'
+import ProfileEdit from '@/pages/Profile/Edit'
 
 const router = createBrowserRouter([
   {
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
         element: <Video />,
       },
     ],
+  },
+  {
+    path: '/profile/edit',
+    element: <ProfileEdit />,
   },
 ])
 

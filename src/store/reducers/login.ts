@@ -12,6 +12,8 @@ export const login = (state = initValue, action: LoginAction): Login => {
       return { ...state, token: action.payload }
     case 'login/refresh_token':
       return { ...state, refresh_token: action.payload }
+    case 'login/quit':
+      return { ...initValue }
     default:
       return state
   }
