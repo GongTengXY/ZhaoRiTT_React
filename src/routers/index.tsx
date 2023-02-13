@@ -7,6 +7,9 @@ import Profile from '@/pages/Profile'
 import Video from '@/pages/Video'
 import ProfileEdit from '@/pages/Profile/Edit'
 import AuthRoute from '@/utils/AuthRoute'
+import Article from '@/pages/Article'
+import Search from '@/pages/Search'
+import SearchResult from '@/pages/Search/Result'
 
 const router = createBrowserRouter([
   {
@@ -46,6 +49,18 @@ const router = createBrowserRouter([
   {
     path: '/profile/edit',
     element: <ProfileEdit />,
+  },
+  {
+    path: '/article/:id',
+    element: <Article />,
+  },
+  {
+    path: '/search',
+    element: <Search />,
+  },
+  {
+    path: '/search/result/:q',
+    element: <SearchResult />,
   },
 ])
 

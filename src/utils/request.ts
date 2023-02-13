@@ -6,7 +6,7 @@ import { removeUserProfile } from './storage'
 import { QuitUserToken } from '../store/actions/login'
 import { putToken } from '@/api/login'
 import { QuitLogin } from '../store/actions/user'
-import { Toast } from 'antd-mobile'
+import { Toast, Dialog } from 'antd-mobile'
 
 const instance = axios.create({
   baseURL: 'http://toutiao.itheima.net/v1_0',
@@ -37,15 +37,13 @@ instance.interceptors.response.use(
   async (error) => {
     console.log(error)
     if (error.response.status === 401) {
-      // token 过期，登录超时
-      removeToken()
-      store.dispatch(QuitUserToken())
       if (!store.getState().login.refresh_token) {
-        Toast.show({
-          content: '登录超时，请重新登录',
-          duration: 1000,
-          afterClose: () => window.location.replace('/login'),
-        })
+        // 就没有token还想操作，得让其先登录
+        window.location.replace('/login')
+      } else {
+        // token 过期，登录超时
+        removeToken()
+        store.dispatch(QuitUserToken())
       }
       const { data } = (await putToken()) as PutTokenResponse
       console.log(data)
@@ -64,6 +62,7 @@ instance.interceptors.response.use(
         afterClose: () => window.location.replace('/login'),
       })
     }
+    return Promise.reject(error)
   }
 )
 

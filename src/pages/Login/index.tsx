@@ -9,6 +9,8 @@ import type { AxiosError } from 'axios'
 
 const Login = () => {
   const location = useLocation()
+  console.log(location)
+
   const timeRef = useRef(-1)
   const mobileRef = useRef<InputRef>(null)
   const [form] = Form.useForm()
@@ -57,10 +59,15 @@ const Login = () => {
       clearTimeout(timeRef.current)
     }
   }, [outTime])
+  const onBack = () => {
+    console.log(123)
+
+    navigate('/home')
+  }
 
   return (
     <div className={styles.root}>
-      <NavBar onBack={() => navigate('/home')}></NavBar>
+      <NavBar onBack={onBack}></NavBar>
       <div className="login-form">
         <p className="title">短信登录</p>
         <Form

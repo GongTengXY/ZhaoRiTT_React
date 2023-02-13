@@ -10,7 +10,11 @@ type Props = {
 
 function Icon({ type, className, onClick }: Props) {
   return (
-    <svg className={classNames('icon', className)} aria-hidden="true">
+    <svg
+      className={classNames('icon', className)}
+      aria-hidden="true"
+      onClick={onClick}
+    >
       <use xlinkHref={`#${type}`}></use>
     </svg>
   )

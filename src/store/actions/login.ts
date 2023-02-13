@@ -11,6 +11,8 @@ import {
   setRefreshToken,
   removeRefreshToken,
   removeToken,
+  getToken,
+  getRefreshToken,
 } from '@/utils/token'
 import { getAllToken, getNoteCode } from '@/api/login'
 
@@ -52,7 +54,9 @@ export const getCode = (mobile: string) => {
 export const QuitToken = (): RootThunkAction => {
   return async (dispatch) => {
     removeRefreshToken()
-    await removeToken()
+    removeToken()
+    console.log(getToken(), getRefreshToken())
+
     dispatch(QuitUserToken())
   }
 }

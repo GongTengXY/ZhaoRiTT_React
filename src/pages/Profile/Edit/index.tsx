@@ -15,6 +15,8 @@ import {
   ThunkQuit,
   ThunkPhoto,
 } from '@/store/actions/user'
+import { QuitArticles } from '@/store/actions/acticle'
+import { ThunkQuitChannel } from '@/store/actions/home'
 import { QuitToken } from '@/store/actions/login'
 import { useNavigate } from 'react-router-dom'
 import { useInitialState } from '@/utils/use-initial-state'
@@ -100,6 +102,8 @@ const ProfileEdit = () => {
         try {
           await dispatch(ThunkQuit())
           await dispatch(QuitToken())
+          await dispatch(ThunkQuitChannel())
+          await dispatch(QuitArticles())
           navigate('/home')
           Toast.show({
             icon: 'success',

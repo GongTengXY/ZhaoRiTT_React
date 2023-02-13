@@ -1,0 +1,34 @@
+.root {
+  height: 100%;
+  background-color: #fff;
+
+  :global {
+    .publish {
+      color: #fc6627;
+      font-size: 14px;
+    }
+    .adm-text-area-element {
+      font-size: 14px;
+    }
+
+    .input-area {
+      margin: 0 auto;
+      border-radius: 20px;
+      padding: 15px 16px;
+      width: 80%;
+      height: 100px;
+      background-color: #f7f8fa;
+      .adm-text-area-wrapper {
+        --font-size: 14px;
+      }
+
+      &::placeholder {
+        font-size: 14px;
+      }
+
+      .at {
+        color: #969799;
+      }
+    }
+  }
+}
