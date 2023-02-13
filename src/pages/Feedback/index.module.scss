@@ -1,0 +1,68 @@
+.root {
+  :global {
+    .wrapper {
+      padding: 0 16px;
+    }
+
+    .feedback-item {
+      padding-top: 15px;
+      .title {
+        margin-bottom: 15px;
+        font-size: 17px;
+        font-weight: 500;
+      }
+    }
+
+    .textarea-wrap {
+      position: relative;
+      padding: 10px;
+      border-radius: 8px;
+      background-color: #f7f8fa;
+      margin-bottom: 5px;
+
+      .textarea {
+        height: 60px;
+        font-size: 14px;
+        line-height: 24px;
+
+        &::placeholder {
+          color: #c8c9cc;
+        }
+      }
+
+      .count {
+        margin-top: 4px;
+        text-align: right;
+        font-size: 12px;
+        color: #999;
+      }
+    }
+
+    .am-image-picker-list {
+      padding: 0;
+      margin-top: 12px;
+    }
+    .am-image-picker-item {
+      background-color: #f7f8fa;
+    }
+
+    .image-picker-desc {
+      color: #969799;
+      font-size: 12px;
+    }
+
+    .am-input-item {
+      background-color: #f7f8fa;
+    }
+
+    .feedback-submit {
+      margin-top: 150px;
+    }
+    .adm-text-area-element {
+      font-size: 14px;
+    }
+    adm-text-area-count {
+      padding-top: 0;
+    }
+  }
+}

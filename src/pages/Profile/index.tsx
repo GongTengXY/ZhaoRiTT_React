@@ -1,6 +1,6 @@
 import { ThunkUserInfo, UserInfo } from '@/store/actions/user'
 import Icon from '@/components/Icon'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { User } from '@/types/data'
 import styles from './index.module.scss'
 import { useInitialState } from '@/utils/use-initial-state'
@@ -14,6 +14,7 @@ const Profile = () => {
   //     dispatch(ThunkUserInfo())
   //   }
   // }, [dispatch])
+  const navigate = useNavigate()
   const { UserInfo } = useInitialState(ThunkUserInfo, 'user')
   const { photo, name, art_count, fans_count, follow_count, like_count } =
     UserInfo
@@ -88,11 +89,17 @@ const Profile = () => {
         <h3>更多服务</h3>
         <div className="service-list">
           <div className="service-item" onClick={() => {}}>
-            <Icon type="iconbtn_feedback" />
+            <Icon
+              type="iconbtn_feedback"
+              onClick={() => navigate('/feedback')}
+            />
             <div>用户反馈</div>
           </div>
           <div className="service-item" onClick={() => {}}>
-            <Icon type="iconbtn_xiaozhitongxue" />
+            <Icon
+              type="iconbtn_xiaozhitongxue"
+              onClick={() => navigate('/chat')}
+            />
             <div>小智同学</div>
           </div>
         </div>

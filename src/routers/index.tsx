@@ -10,6 +10,8 @@ import AuthRoute from '@/utils/AuthRoute'
 import Article from '@/pages/Article'
 import Search from '@/pages/Search'
 import SearchResult from '@/pages/Search/Result'
+import Chat from '@/pages/Chat'
+import Feedback from '@/pages/Feedback'
 
 const router = createBrowserRouter([
   {
@@ -61,6 +63,14 @@ const router = createBrowserRouter([
   {
     path: '/search/result/:q',
     element: <SearchResult />,
+  },
+  {
+    path: '/chat',
+    element: <Chat />,
+  },
+  {
+    path: '/feedback',
+    element: <Feedback />,
   },
 ])
 
