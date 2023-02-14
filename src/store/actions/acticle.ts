@@ -151,14 +151,18 @@ export const ThunkAttentAuthor = (
   isFollowed: boolean
 ): RootThunkAction => {
   return async (dispatch) => {
-    if (isFollowed) {
-      // 取关
-      await unAttentAuthor(id)
-    } else {
-      // 关注
-      await attentAuthor(id)
+    try {
+      if (isFollowed) {
+        // 取关
+        await unAttentAuthor(id)
+      } else {
+        // 关注
+        await attentAuthor(id)
+      }
+      dispatch(updateArtInfo({ name: 'is_followed', value: !isFollowed }))
+    } catch (error) {
+      return console.log(error)
     }
-    dispatch(updateArtInfo({ name: 'is_followed', value: !isFollowed }))
   }
 }
 // 收藏文章
@@ -167,14 +171,16 @@ export const ThunkCollectArt = (
   isCollected: boolean
 ): RootThunkAction => {
   return async (dispatch) => {
-    if (isCollected) {
-      // 取消收藏
-      await quitCollect(art_id)
-    } else {
-      // 收藏文章
-      await collectArticle(art_id)
-    }
-    dispatch(updateArtInfo({ name: 'is_collected', value: !isCollected }))
+    try {
+      if (isCollected) {
+        // 取消收藏
+        await quitCollect(art_id)
+      } else {
+        // 收藏文章
+        await collectArticle(art_id)
+      }
+      dispatch(updateArtInfo({ name: 'is_collected', value: !isCollected }))
+    } catch (error) {}
   }
 }
 // 获取文章评论
@@ -216,15 +222,19 @@ export const ThunkddArtComment = (
 // 对评论或评论回复进行点赞
 export const ThunkAddLiking = (payload: string): RootThunkAction => {
   return async (dispatch) => {
-    const { data } = await addLiking(payload)
-    dispatch(addComliking(payload))
+    try {
+      await addLiking(payload)
+      dispatch(addComliking(payload))
+    } catch (error) {}
   }
 }
 // 取消对评论或评论回复进行点赞
 export const ThunkDelAddLiking = (payload: string): RootThunkAction => {
   return async (dispatch) => {
-    await delAddLiking(payload)
-    dispatch(addComliking(payload))
+    try {
+      await delAddLiking(payload)
+      dispatch(addComliking(payload))
+    } catch (error) {}
   }
 }
 

@@ -1,17 +1,20 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom'
+import { lazy, Suspense } from 'react'
+import { ErrorBlock } from 'antd-mobile'
 import Layout from '@/pages/Layout'
 import Login from '@/pages/Login'
 import Home from '@/pages/Home'
-import Question from '@/pages/Question'
-import Profile from '@/pages/Profile'
-import Video from '@/pages/Video'
-import ProfileEdit from '@/pages/Profile/Edit'
 import AuthRoute from '@/utils/AuthRoute'
-import Article from '@/pages/Article'
-import Search from '@/pages/Search'
-import SearchResult from '@/pages/Search/Result'
-import Chat from '@/pages/Chat'
-import Feedback from '@/pages/Feedback'
+import NotFound from '@/pages/NotFound'
+const Question = lazy(() => import('../pages/Question'))
+const Video = lazy(() => import('../pages/Video'))
+const Profile = lazy(() => import('../pages/Profile'))
+const ProfileEdit = lazy(() => import('../pages/Profile/Edit'))
+const Article = lazy(() => import('../pages/Article'))
+const Search = lazy(() => import('../pages/Search'))
+const Chat = lazy(() => import('../pages/Chat'))
+const Feedback = lazy(() => import('../pages/Feedback'))
+const SearchResult = lazy(() => import('../pages/Search/Result'))
 
 const router = createBrowserRouter([
   {
@@ -36,41 +39,171 @@ const router = createBrowserRouter([
       },
       {
         path: '/home/question',
-        element: <AuthRoute component={<Question />} />,
+        element: (
+          <Suspense
+            fallback={
+              <ErrorBlock
+                image="https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg"
+                style={{
+                  '--image-height': '150px',
+                }}
+                description={<span>请稍等一下.....</span>}
+              ></ErrorBlock>
+            }
+          >
+            <AuthRoute component={<Question />} />
+          </Suspense>
+        ),
       },
       {
         path: '/home/profile',
-        element: <Profile />,
+        element: (
+          <Suspense
+            fallback={
+              <ErrorBlock
+                image="https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg"
+                style={{
+                  '--image-height': '150px',
+                }}
+                description={<span>请稍等一下.....</span>}
+              ></ErrorBlock>
+            }
+          >
+            <Profile />
+          </Suspense>
+        ),
       },
       {
         path: '/home/video',
-        element: <Video />,
+        element: (
+          <Suspense
+            fallback={
+              <ErrorBlock
+                image="https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg"
+                style={{
+                  '--image-height': '150px',
+                }}
+                description={<span>请稍等一下.....</span>}
+              ></ErrorBlock>
+            }
+          >
+            <Video />
+          </Suspense>
+        ),
       },
     ],
   },
   {
     path: '/profile/edit',
-    element: <ProfileEdit />,
+    element: (
+      <Suspense
+        fallback={
+          <ErrorBlock
+            image="https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg"
+            style={{
+              '--image-height': '150px',
+            }}
+            description={<span>请稍等一下.....</span>}
+          ></ErrorBlock>
+        }
+      >
+        <AuthRoute component={<ProfileEdit />} />
+      </Suspense>
+    ),
   },
   {
     path: '/article/:id',
-    element: <Article />,
+    element: (
+      <Suspense
+        fallback={
+          <ErrorBlock
+            image="https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg"
+            style={{
+              '--image-height': '150px',
+            }}
+            description={<span>请稍等一下.....</span>}
+          ></ErrorBlock>
+        }
+      >
+        <Article />
+      </Suspense>
+    ),
   },
   {
     path: '/search',
-    element: <Search />,
+    element: (
+      <Suspense
+        fallback={
+          <ErrorBlock
+            image="https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg"
+            style={{
+              '--image-height': '150px',
+            }}
+            description={<span>请稍等一下.....</span>}
+          ></ErrorBlock>
+        }
+      >
+        <Search />
+      </Suspense>
+    ),
   },
   {
     path: '/search/result/:q',
-    element: <SearchResult />,
+    element: (
+      <Suspense
+        fallback={
+          <ErrorBlock
+            image="https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg"
+            style={{
+              '--image-height': '150px',
+            }}
+            description={<span>请稍等一下.....</span>}
+          ></ErrorBlock>
+        }
+      >
+        <SearchResult />
+      </Suspense>
+    ),
   },
   {
     path: '/chat',
-    element: <Chat />,
+    element: (
+      <Suspense
+        fallback={
+          <ErrorBlock
+            image="https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg"
+            style={{
+              '--image-height': '150px',
+            }}
+            description={<span>请稍等一下.....</span>}
+          ></ErrorBlock>
+        }
+      >
+        <AuthRoute component={<Chat />} />
+      </Suspense>
+    ),
   },
   {
     path: '/feedback',
-    element: <Feedback />,
+    element: (
+      <Suspense
+        fallback={
+          <ErrorBlock
+            image="https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg"
+            style={{
+              '--image-height': '200px',
+            }}
+            description={<span>请稍等一下.....</span>}
+          ></ErrorBlock>
+        }
+      >
+        <AuthRoute component={<Feedback />} />
+      </Suspense>
+    ),
+  },
+  {
+    path: '*',
+    element: <NotFound />,
   },
 ])
 

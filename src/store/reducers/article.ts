@@ -1,9 +1,4 @@
-import {
-  Articles,
-  ArticleContent,
-  ArticleComment,
-  ArtComment,
-} from '@/types/data'
+import { Articles, ArticleContent, ArticleComment } from '@/types/data'
 import { ActicleAction } from '../actions/acticle'
 
 type articleState = {

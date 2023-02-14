@@ -11,8 +11,6 @@ import {
   AddCommentReplyResponse,
 } from '@/types/data'
 import { useState, useEffect } from 'react'
-import { getArticleComment } from '@/store/actions/acticle'
-import { useDispatch } from 'react-redux'
 import request from '@/utils/request'
 
 type Props = {
@@ -31,7 +29,7 @@ const Reply = ({ onClose, commentItem, onReplyThumbsUp, articleId }: Props) => {
   // 评论项的回复列表状态
   const [commentReply, setCommentReply] = useState({} as ArticleComment)
   // 评论的回复列表数据
-  const [reply, setReply] = useState<ArticleComment>({
+  const [reply] = useState<ArticleComment>({
     // 注意：为了防止第一次进入时，访问 reply.results.length 不报错，需要在此处给它设置默认值为：[]
     results: [] as ArtComment[],
     last_id: null,
@@ -75,7 +73,7 @@ const Reply = ({ onClose, commentItem, onReplyThumbsUp, articleId }: Props) => {
   }
   // 对评论进行回复
   const onAddComment = async (value: string) => {
-    const res = await request.post<AddCommentReplyResponse>('/comments', {
+    await request.post<AddCommentReplyResponse>('/comments', {
       target: originComment.com_id,
 
       content: value,

@@ -1,19 +1,10 @@
-import { ThunkUserInfo, UserInfo } from '@/store/actions/user'
+import { ThunkUserInfo } from '@/store/actions/user'
 import Icon from '@/components/Icon'
 import { Link, useNavigate } from 'react-router-dom'
-import { User } from '@/types/data'
 import styles from './index.module.scss'
 import { useInitialState } from '@/utils/use-initial-state'
 
 const Profile = () => {
-  // const dispatch = useDispatch()
-  // const { photo, name, art_count, fans_count, follow_count, like_count } =
-  //   useSelector((state: RootState) => state.user?.UserInfo)
-  // useEffect(() => {
-  //   if (store.getState().login.token) {
-  //     dispatch(ThunkUserInfo())
-  //   }
-  // }, [dispatch])
   const navigate = useNavigate()
   const { UserInfo } = useInitialState(ThunkUserInfo, 'user')
   const { photo, name, art_count, fans_count, follow_count, like_count } =

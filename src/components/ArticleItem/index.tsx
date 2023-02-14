@@ -46,7 +46,7 @@ const ArticleItem = ({ article }: Props) => {
         )}
       </div>
       <div className={classnames('article-info', type === 0 ? 'none-mt' : '')}>
-        <span>{aut_name}</span>
+        <span>{aut_name.indexOf('黑马') === -1 ? aut_name : '朝日小新'}</span>
         <span>{comm_count} 评论</span>
         <span>{dayjs().from(dayjs(pubdate))}</span>
 

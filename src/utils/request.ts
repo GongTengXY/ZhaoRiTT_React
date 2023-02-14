@@ -6,7 +6,7 @@ import { removeUserProfile } from './storage'
 import { QuitUserToken } from '../store/actions/login'
 import { putToken } from '@/api/login'
 import { QuitLogin } from '../store/actions/user'
-import { Toast, Dialog } from 'antd-mobile'
+import { Toast } from 'antd-mobile'
 
 const instance = axios.create({
   baseURL: 'http://toutiao.itheima.net/v1_0',

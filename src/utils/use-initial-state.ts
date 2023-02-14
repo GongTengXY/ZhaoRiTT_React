@@ -83,5 +83,5 @@ export const useResetRedux = <KeyName extends keyof RootState>(
       // 页面卸载时调用
       dispatch(emptyArtRedux(stateName as string))
     }
-  }, [dispatch])
+  }, [dispatch, stateName])
 }

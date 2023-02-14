@@ -20,7 +20,7 @@ type props = {
 const EditList = ({ type, onClose, onUpdateGender, values }: props) => {
   const list = type === 'gender' ? genderList : photoList
   const onItemClick = (value: string) => {
-    if (values != value) {
+    if (values !== value) {
       onUpdateGender(type, value)
     }
   }

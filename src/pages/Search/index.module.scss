@@ -77,9 +77,11 @@
         @include hairline(bottom, #f0f0f0);
 
         .history-item {
-          display: inline-block;
-          height: 16px;
+          display: flex;
+          justify-content: space-between;
+          height: 24px;
           margin-bottom: 16px;
+          border-bottom: 1px solid #f0f0f0;
         }
 
         .divider {
@@ -120,6 +122,14 @@
     }
     .search-result.show {
       display: block;
+    }
+    .text-overflow {
+      word-break: break-all;
+      display: -webkit-box;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
     }
   }
 }

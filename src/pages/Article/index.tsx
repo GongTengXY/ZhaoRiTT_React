@@ -65,7 +65,6 @@ const Article = () => {
   const authorRef = useRef<HTMLDivElement>(null)
   const { id } = useParams<{ id: string }>()
   const navigate = useNavigate()
-  const ResetRedux = useResetRedux('article')
 
   const onCommentHide = () => setCommentVisible(false)
 
@@ -74,10 +73,11 @@ const Article = () => {
     'article',
     () => setLoading(false)
   )
+  useResetRedux('article')
   // 第一次：获取评论数据
   useEffect(() => {
     dispatch(getArticleComment(CommentType.Article, id as string))
-  }, [dispatch, id as string])
+  }, [dispatch, id])
   // 文章评论
   const { end_id, last_id } = comment
   // 是否有更多评论
@@ -97,10 +97,6 @@ const Article = () => {
     like_count,
   } = articleDetail
   // 控制文章评论回复弹出层的展示或隐藏的状态
-  const [showReply, setShowReply] = useState<CommentReply>({
-    visible: false,
-    commentItem: {} as ArtComment,
-  })
   // 代码块高亮
   useEffect(() => {
     const dgHtmlDOM = document.querySelector('.dg-html')
@@ -258,7 +254,9 @@ const Article = () => {
 
             <div className="author" ref={authorRef}>
               <img src={aut_photo} alt="" />
-              <span className="name">{aut_name}</span>
+              <span className="name">
+                {aut_name.indexOf('黑马') === -1 ? aut_name : '朝日小新'}
+              </span>
               <span
                 className={classNames('follow', is_followed ? 'followed' : '')}
                 onClick={onFollow}
@@ -353,8 +351,15 @@ const Article = () => {
         >
           {isShowNavAuthor ? (
             <div className="nav-author">
-              <img src={aut_photo} alt="" />
-              <span className="name">{aut_name}</span>
+              <img
+                src={
+                  aut_photo || 'http://toutiao.itheima.net/images/user_head.jpg'
+                }
+                alt=""
+              />
+              <span className="name">
+                {aut_name.indexOf('黑马') === -1 ? aut_name : '朝日小新'}
+              </span>
               <span
                 className={classNames('follow', is_followed ? 'followed' : '')}
                 onClick={onFollow}

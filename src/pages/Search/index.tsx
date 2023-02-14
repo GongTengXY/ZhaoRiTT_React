@@ -2,18 +2,28 @@ import Icon from '@/components/Icon'
 import { NavBar, SearchBar } from 'antd-mobile'
 import classnames from 'classnames'
 import styles from './index.module.scss'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useDebounceFn } from 'ahooks'
 import { useDispatch, useSelector } from 'react-redux'
 import { ThunkSuggestion, clearSuggestion } from '@/store/actions/search'
 import { RootState } from '@/types/store'
 import { useNavigate } from 'react-router-dom'
 
+const GEEK_SEARCH_KEY = 'geek-89-search-history'
+
 const Search = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const { suggestion } = useSelector((state: RootState) => state.search)
   const [searchText, setSearchText] = useState('')
+  const [searchHistory, setSearchHistory] = useState<string[]>([])
+
+  useEffect(() => {
+    const localHistory = JSON.parse(
+      localStorage.getItem(GEEK_SEARCH_KEY) ?? '[]'
+    ) as string[]
+    setSearchHistory(localHistory)
+  }, [])
   //   const history = useHistory()
   const { run: debounceGetSuggest } = useDebounceFn(
     (value: string) => {
@@ -54,6 +64,45 @@ const Search = () => {
   const onSearchResult = () => {
     dispatch(clearSuggestion())
     navigate(`/search/result/${searchText}`)
+    saveHistories(searchText)
+  }
+  // 储存搜索记录
+  const saveHistories = (value: string) => {
+    // 1. 创建保存历史记录的函数 saveHistories
+    // 2. 从本地缓存中获取到历史记录，判断本地缓存中是否有历史记录数据
+    let localHistory = JSON.parse(
+      localStorage.getItem(GEEK_SEARCH_KEY) ?? '[]'
+    ) as string[]
+    if (localHistory.length === 0) {
+      // 3. 如果没有，直接添加当前搜索内容到历史记录中
+      localHistory = [value]
+    } else {
+      // 4. 如果有，判断是否包含当前搜索内容
+      if (localHistory.indexOf(value) > -1) {
+        // 6. 如果包含，将其移动到第一个
+        localHistory = [value, ...localHistory.filter((item) => item !== value)]
+      } else {
+        // 5. 如果没有包含，直接添加到历史记录中
+        localHistory = [...localHistory, value]
+      }
+    }
+    // 7. 将最新的历史记录存储到本地缓存中
+    localStorage.setItem(GEEK_SEARCH_KEY, JSON.stringify(localHistory))
+  }
+  // 删除单个历史记录
+  const onDeleteHistory = (value: string) => {
+    const localHistory = JSON.parse(
+      localStorage.getItem(GEEK_SEARCH_KEY) ?? '[]'
+    ) as string[]
+    const newHistory = localHistory.filter((item) => item !== value)
+    localStorage.setItem(GEEK_SEARCH_KEY, JSON.stringify(newHistory))
+
+    setSearchHistory(newHistory)
+  }
+  // 清空所有历史记录
+  const onClearAllHistory = () => {
+    localStorage.removeItem(GEEK_SEARCH_KEY)
+    setSearchHistory([])
   }
 
   return (
@@ -77,30 +126,33 @@ const Search = () => {
       </NavBar>
 
       {/* 搜索历史 */}
-      {/* <div className="history" style={{ display: 'block' }}>
-        <div className="history-header">
-          <span>搜索历史</span>
-          <span>
-            <Icon type="iconbtn_del" />
-            清除全部
-          </span>
-        </div>
+      {suggestion.length <= 0 && (
+        <div
+          className="history"
+          style={{ display: searchHistory.length <= 0 ? 'none' : 'block' }}
+        >
+          <div className="history-header">
+            <span>搜索历史</span>
+            <span onClick={onClearAllHistory}>
+              <Icon type="iconbtn_del" />
+              清除全部
+            </span>
+          </div>
 
-        <div className="history-list">
-          <span className="history-item">
-            Python生成九宫格图片<span className="divider"></span>
-          </span>
-          <span className="history-item">
-            Python<span className="divider"></span>
-          </span>
-          <span className="history-item">
-            CSS<span className="divider"></span>
-          </span>
-          <span className="history-item">
-            数据分析<span className="divider"></span>
-          </span>
+          <div className="history-list">
+            {searchHistory.map((item, index) => (
+              <span
+                className="history-item"
+                key={index}
+                onClick={() => onDeleteHistory(item)}
+              >
+                <span className="text-overflow">{item}</span>
+                <Icon type="iconbtn_essay_close" />
+              </span>
+            ))}
+          </div>
         </div>
-      </div> */}
+      )}
 
       {/* 搜素建议结果列表 */}
       <div
