@@ -24,7 +24,7 @@ instance.interceptors.request.use(
     return config
   },
   (error) => {
-    console.log(error)
+    // console.log(error)
 
     return Promise.reject(error)
   }
@@ -35,7 +35,7 @@ instance.interceptors.response.use(
     return response.data
   },
   async (error) => {
-    console.log(error)
+    // console.log(error)
     if (error.response.status === 401) {
       if (!store.getState().login.refresh_token) {
         // 就没有token还想操作，得让其先登录
@@ -46,7 +46,7 @@ instance.interceptors.response.use(
         store.dispatch(QuitUserToken())
       }
       const { data } = (await putToken()) as PutTokenResponse
-      console.log(data)
+      // console.log(data)
       setToken(data.token)
       error.config.headers.Authorization = `Bearer ${data.token}`
       return instance(error.config)

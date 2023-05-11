@@ -9,7 +9,8 @@ import type { AxiosError } from 'axios'
 
 const Login = () => {
   const location = useLocation()
-  console.log(location)
+
+  // console.log(location)
 
   const timeRef = useRef(-1)
   const mobileRef = useRef<InputRef>(null)
@@ -60,7 +61,7 @@ const Login = () => {
     }
   }, [outTime])
   const onBack = () => {
-    console.log(123)
+    // console.log(123)
 
     navigate('/home')
   }

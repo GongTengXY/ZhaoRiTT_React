@@ -55,8 +55,6 @@ export const QuitToken = (): RootThunkAction => {
   return async (dispatch) => {
     removeRefreshToken()
     removeToken()
-    console.log(getToken(), getRefreshToken())
-
     dispatch(QuitUserToken())
   }
 }

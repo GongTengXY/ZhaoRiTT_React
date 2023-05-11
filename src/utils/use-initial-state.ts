@@ -8,6 +8,9 @@ import store from '@/store'
 
 // 使用泛型约束
 // 分发action获取数据
+// 参数1：action为异步获取数据的action-thunk，
+// 参数2：stateName为redux中state的模块，
+// 参数3：afterAction为获取完资源后需要做的一些操作(可选)
 export const useInitialState = <T extends keyof RootState>(
   action: () => void,
   stateName: T,

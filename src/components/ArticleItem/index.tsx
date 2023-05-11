@@ -39,7 +39,12 @@ const ArticleItem = ({ article }: Props) => {
           <div className="article-imgs">
             {images.map((item, i) => (
               <div className="article-img-wrapper" key={i}>
-                <Image lazy src={item} alt="" />
+                <Image
+                  style={{ width: '110px', height: '78px' }}
+                  lazy
+                  src={item}
+                  alt=""
+                />
               </div>
             ))}
           </div>

@@ -32,7 +32,7 @@ const Chat = () => {
     // 监听connect 事件
     client.on('connect', () => {
       clientRef.current = client // 在链接成功的时候复制给ref的current属性
-      console.log('连接成功')
+      // console.log('连接成功')
       setChatList([
         { type: 'xz', message: '欢迎来到朝日头条' },
         { type: 'xz', message: '有什么问题吗？' },

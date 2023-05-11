@@ -105,7 +105,7 @@ export const ThunkNewArticleList = (
 ): RootThunkAction => {
   return async (dispatch) => {
     const { data } = (await getArticleList(payload)) as ArticlesResponse
-    console.log(data)
+    // console.log(data)
 
     dispatch(
       getNewArticles({
@@ -120,7 +120,7 @@ export const ThunkNewArticleList = (
 export const ThunkArticleContent = (payload: string): RootThunkAction => {
   return async (dispatch) => {
     const { data } = (await getArticleDetail(payload)) as ArticleDetailResponse
-    console.log(data)
+    // console.log(data)
     dispatch(getArtDetail(data))
   }
 }
@@ -140,9 +140,7 @@ export const ThunkLikeArticle = (
       dispatch(
         updateArtInfo({ name: 'attitude', value: attitude === 1 ? 0 : 1 })
       )
-    } catch (error) {
-      return console.log(error)
-    }
+    } catch (error) {}
   }
 }
 // 关注作者
@@ -190,7 +188,7 @@ export const getArticleComment = (
 ): RootThunkAction => {
   return async (dispatch) => {
     const { data } = await getComments({ type, source: id })
-    console.log(data)
+    // console.log(data)
     dispatch(getArtComments(data))
   }
 }
@@ -202,7 +200,7 @@ export const getMoreArticleComments = (
 ): RootThunkAction => {
   return async (dispatch) => {
     const { data } = await getComments({ type, source: id, offset })
-    console.log(data)
+    // console.log(data)
     dispatch(getArtComments(data))
   }
 }
@@ -214,7 +212,7 @@ export const ThunkddArtComment = (
 ): RootThunkAction => {
   return async (dispatch) => {
     const { data } = await addArtComComment({ target, content, art_id })
-    console.log(data)
+    // console.log(data)
 
     dispatch(addArtCommment(data.new_obj))
   }

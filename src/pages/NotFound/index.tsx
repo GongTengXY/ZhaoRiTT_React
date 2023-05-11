@@ -6,7 +6,7 @@ export default function NotFound() {
   const timeRef = useRef(-1)
   useEffect(() => {
     let timer = setInterval(() => {
-      console.log('定时器清了吗')
+      // console.log('定时器清了吗')
       setTime((time) => {
         timeRef.current = time - 1
         return time - 1
