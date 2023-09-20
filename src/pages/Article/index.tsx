@@ -178,18 +178,28 @@ const Article = () => {
     }
   }
   // 关注或者取关作者
-  const onFollow = () => {
-    dispatch(ThunkAttentAuthor(aut_id, is_followed))
+  const onFollow = async () => {
+    await dispatch(ThunkAttentAuthor(aut_id, is_followed))
+    Toast.show({
+      icon: 'success',
+      content: is_followed ? '取消关注' : '已关注',
+    })
   }
   // 收藏或取消收藏
   const onCollected = async () => {
     await dispatch(ThunkCollectArt(art_id, is_collected))
-    Toast.show(is_collected ? '取消收藏' : '已收藏')
+    Toast.show({
+      icon: 'success',
+      content: is_collected ? '取消收藏' : '已收藏',
+    })
   }
   // 点赞或取消点赞
   const onLike = async () => {
     await dispatch(ThunkLikeArticle(art_id, attitude))
-    Toast.show(attitude === 1 ? '取消点赞' : '已点赞')
+    Toast.show({
+      icon: 'success',
+      content: attitude === 1 ? '取消点赞' : '已点赞',
+    })
   }
   // 以后每次：InfiniteScroll 加载评论数据
   const loadMoreComments = async () => {
@@ -314,6 +324,7 @@ const Article = () => {
   // 对文章或评论进行评论
   const onAddComment = async (content: string) => {
     await dispatch(ThunkddArtComment(art_id, content, null))
+    Toast.show({ icon: 'success', content: '发表成功' })
     // 关闭评论抽屉
     onCommentHide()
   }
